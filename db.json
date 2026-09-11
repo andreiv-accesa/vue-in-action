@@ -1,0 +1,144 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "title": "Tech Conference 2026",
+      "date": "2026-10-15",
+      "location": "Main Auditorium",
+      "isRegistered": false
+    },
+    {
+      "id": "2",
+      "title": "Vue & Tailwind Workshop",
+      "date": "2026-11-02",
+      "location": "Room 101",
+      "isRegistered": true
+    },
+    {
+      "id": "3",
+      "title": "AI & Machine Learning Summit",
+      "date": "2026-12-05",
+      "location": "Conference Hall B",
+      "isRegistered": false
+    },
+    {
+      "id": "4",
+      "title": "Web Development Bootcamp",
+      "date": "2026-12-20",
+      "location": "Room 202",
+      "isRegistered": true
+    },
+    {
+      "id": "5",
+      "title": "Cybersecurity Awareness Seminar",
+      "date": "2027-01-10",
+      "location": "Main Auditorium",
+      "isRegistered": false
+    },
+    {
+      "id": "6",
+      "title": "React Native Mobile Meetup",
+      "date": "2027-02-14",
+      "location": "Innovation Lab",
+      "isRegistered": true
+    },
+    {
+      "id": "7",
+      "title": "UX Design Masterclass",
+      "date": "2027-03-08",
+      "location": "Creative Studio",
+      "isRegistered": false
+    },
+    {
+      "id": "8",
+      "title": "DevOps Automation Forum",
+      "date": "2027-04-19",
+      "location": "Hall 3",
+      "isRegistered": true
+    },
+    {
+      "id": "9",
+      "title": "Cloud Architecture Day",
+      "date": "2027-05-27",
+      "location": "Skyline Center",
+      "isRegistered": false
+    },
+    {
+      "id": "10",
+      "title": "Frontend Performance Expo",
+      "date": "2027-06-11",
+      "location": "Digital Commons",
+      "isRegistered": true
+    },
+    {
+      "id": "11",
+      "title": "Data Visualization Deep Dive",
+      "date": "2027-07-03",
+      "location": "Data Hall",
+      "isRegistered": false
+    },
+    {
+      "id": "12",
+      "title": "JavaScript Patterns Workshop",
+      "date": "2027-07-22",
+      "location": "Room 305",
+      "isRegistered": true
+    },
+    {
+      "id": "13",
+      "title": "Accessibility & Inclusive Design",
+      "date": "2027-08-09",
+      "location": "Community Lab",
+      "isRegistered": false
+    },
+    {
+      "id": "14",
+      "title": "Full-Stack Product Sprint",
+      "date": "2027-08-24",
+      "location": "Launch Hub",
+      "isRegistered": true
+    },
+    {
+      "id": "15",
+      "title": "Blockchain for Startups",
+      "date": "2027-09-12",
+      "location": "Finance Center",
+      "isRegistered": false
+    },
+    {
+      "id": "16",
+      "title": "Product Strategy Forum",
+      "date": "2027-10-01",
+      "location": "North Tower",
+      "isRegistered": true
+    },
+    {
+      "id": "17",
+      "title": "Serverless Architecture Meetup",
+      "date": "2027-10-18",
+      "location": "Cloud Room",
+      "isRegistered": false
+    },
+    {
+      "id": "18",
+      "title": "Testing & Quality Assurance Summit",
+      "date": "2027-11-07",
+      "location": "QA Annex",
+      "isRegistered": true
+    },
+    {
+      "id": "19",
+      "title": "Design Systems Conference",
+      "date": "2027-11-29",
+      "location": "Studio West",
+      "isRegistered": false
+    },
+    {
+      "id": "20",
+      "title": "AI Product Leadership Day",
+      "date": "2027-12-15",
+      "location": "Executive Center",
+      "isRegistered": true
+    }
+  ]
+}

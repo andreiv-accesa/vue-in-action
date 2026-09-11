@@ -4,15 +4,16 @@ import { useStorage } from '@vueuse/core'
 import { generateId } from '@/shared/utils/generateId'
 import type { Task, Priority } from './types'
 
-import TaskCreateForm from './TaskCreateForm.vue'
 import TaskEditForm from './TaskEditForm.vue'
-import TaskFilterForm from './TaskFilterForm.vue'
 import TaskItem from './TaskItem.vue'
 
 const tasks = useStorage<Task[]>('tasks-app-data', [])
 const searchQuery = ref('')
 const selectedPriorityFilter = ref<Priority | 'all'>('all')
 const editingTaskId = ref<string | null>(null)
+
+const newTaskText = ref('')
+const newTaskPriority = ref<Priority>('medium')
 
 const filteredTasks = computed(() => {
   const query = searchQuery.value.toLowerCase()
@@ -26,13 +27,18 @@ const filteredTasks = computed(() => {
   })
 })
 
-function handleAddTask(payload: { text: string; priority: Priority }) {
+function handleAddTask() {
+  if (!newTaskText.value) return
+
   tasks.value.push({
     id: generateId(),
-    text: payload.text,
-    priority: payload.priority,
+    text: newTaskText.value,
+    priority: newTaskPriority.value,
     isCompleted: false,
   })
+
+  newTaskText.value = ''
+  newTaskPriority.value = 'medium'
 }
 
 function handleToggleTask(task: Task) {
@@ -63,6 +69,10 @@ function handleCancelEdit() {
   editingTaskId.value = null
 }
 
+const hasActiveFilters = computed(
+  () => searchQuery.value !== '' || selectedPriorityFilter.value !== 'all',
+)
+
 function handleClearFilters() {
   searchQuery.value = ''
   selectedPriorityFilter.value = 'all'
@@ -70,26 +80,79 @@ function handleClearFilters() {
 </script>
 
 <template>
-  <div class="task-manager">
-    <TaskCreateForm @add-task="handleAddTask" />
+  <div class="flex flex-col gap-4 w-full">
+    <form class="flex gap-2 items-center w-full">
+      <input
+        id="new-task-input"
+        v-model.trim="newTaskText"
+        type="text"
+        placeholder="Enter new task..."
+        class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+        required
+        autofocus
+      />
 
-    <TaskFilterForm
-      v-model:searchQuery="searchQuery"
-      v-model:priorityFilter="selectedPriorityFilter"
-      @clear-filters="handleClearFilters"
-    />
+      <select
+        id="new-task-priority"
+        v-model="newTaskPriority"
+        class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      >
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
 
-    <hr class="divider" />
+      <button
+        type="submit"
+        :disabled="!newTaskText"
+        class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity whitespace-nowrap"
+        @click="handleAddTask"
+      >
+        Add Task
+      </button>
+    </form>
 
-    <main>
+    <form class="flex gap-2 items-center w-full">
+      <input
+        id="search-input"
+        v-model.trim="searchQuery"
+        type="search"
+        placeholder="Search by name..."
+        class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      />
+
+      <select
+        id="filter-priority"
+        v-model="selectedPriorityFilter"
+        class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      >
+        <option value="all">All Priorities</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+
+      <button
+        type="reset"
+        :disabled="!hasActiveFilters"
+        class="px-4 py-2 bg-[var(--border)] text-[var(--text)] rounded font-medium hover:bg-[var(--border-strong)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
+        @click="handleClearFilters"
+      >
+        Clear
+      </button>
+    </form>
+
+    <hr class="border-t border-[var(--border)] my-2" />
+
+    <main class="w-full">
       <TransitionGroup
         v-if="filteredTasks.length"
         name="task-list"
         tag="ul"
-        class="task-list"
+        class="relative flex flex-col-reverse gap-2 p-0 m-0 list-none"
         aria-label="Tasks list"
       >
-        <li v-for="task in filteredTasks" :key="task.id" class="task-list-item">
+        <li v-for="task in filteredTasks" :key="task.id" class="w-full">
           <TaskEditForm
             v-if="editingTaskId === task.id"
             :task="task"
@@ -107,38 +170,12 @@ function handleClearFilters() {
         </li>
       </TransitionGroup>
 
-      <p v-else class="description">No tasks found.</p>
+      <p v-else class="text-center text-[var(--text-secondary)] py-8">No tasks found.</p>
     </main>
   </div>
 </template>
 
 <style scoped>
-.task-manager {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin-block: 0.5rem 1rem;
-}
-
-.task-list {
-  position: relative;
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.task-list-item {
-  width: 100%;
-}
-
 .task-list-move,
 .task-list-enter-active,
 .task-list-leave-active {

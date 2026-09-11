@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Priority } from './types'
+import FormRow from '@/components/ui/FormRow.vue'
 
 const searchQuery = defineModel<string>('searchQuery', { required: true })
 const priorityFilter = defineModel<Priority | 'all'>('priorityFilter', { required: true })
@@ -15,35 +16,35 @@ function handleReset() {
 </script>
 
 <template>
-  <form @reset.prevent="handleReset" class="filter-form">
+  <FormRow>
     <label for="search-input" class="sr-only">Search tasks</label>
     <input
       id="search-input"
       v-model.trim="searchQuery"
       type="search"
       placeholder="Search by name..."
-      class="search-input"
+      class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
     />
 
     <label for="filter-priority" class="sr-only">Filter by priority</label>
-    <select id="filter-priority" v-model="priorityFilter">
+    <select
+      id="filter-priority"
+      v-model="priorityFilter"
+      class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+    >
       <option value="all">All Priorities</option>
       <option value="low">Low</option>
       <option value="medium">Medium</option>
       <option value="high">High</option>
     </select>
 
-    <button type="reset" :disabled="!hasActiveFilters">Clear Filters</button>
-  </form>
+    <button
+      type="reset"
+      :disabled="!hasActiveFilters"
+      class="px-4 py-2 bg-[var(--border)] text-[var(--text)] rounded font-medium hover:bg-[var(--border-strong)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+      @click="handleReset"
+    >
+      Clear Filters
+    </button>
+  </FormRow>
 </template>
-
-<style scoped>
-.filter-form {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.search-input {
-  flex: 1;
-}
-</style>

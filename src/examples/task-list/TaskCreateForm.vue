@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Priority } from './types'
+import FormRow from '@/components/ui/FormRow.vue'
 
 const emit = defineEmits<{
   (e: 'add-task', payload: { text: string; priority: Priority }): void
@@ -23,36 +24,36 @@ function handleSubmit() {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="task-form">
+  <FormRow>
     <label for="new-task-input" class="sr-only">Task text</label>
     <input
       id="new-task-input"
       v-model.trim="newTaskText"
       type="text"
       placeholder="Enter new task..."
-      class="task-input"
+      class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
       required
       autofocus
     />
 
     <label for="new-task-priority" class="sr-only">Priority</label>
-    <select id="new-task-priority" v-model="newTaskPriority">
+    <select
+      id="new-task-priority"
+      v-model="newTaskPriority"
+      class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+    >
       <option value="low">Low</option>
       <option value="medium">Medium</option>
       <option value="high">High</option>
     </select>
 
-    <button type="submit" :disabled="!newTaskText">Add Task</button>
-  </form>
+    <button
+      type="submit"
+      :disabled="!newTaskText"
+      class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+      @click="handleSubmit"
+    >
+      Add Task
+    </button>
+  </FormRow>
 </template>
-
-<style scoped>
-.task-form {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.task-input {
-  flex: 1;
-}
-</style>

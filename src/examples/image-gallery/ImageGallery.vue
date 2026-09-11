@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { generateId } from '@/shared/utils/generateId'
+import IconButton from '@/components/ui/IconButton.vue'
 
 type Photo = {
   id: string
@@ -33,134 +34,68 @@ function removePhoto(index: number) {
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="upload-form">
+  <form class="flex gap-2 items-center w-full">
     <label for="photo-url-input" class="sr-only">Image URL</label>
     <input
       id="photo-url-input"
       v-model.trim="newPhotoUrl"
       type="url"
       placeholder="Enter image URL"
-      class="url-input"
+      class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
       required
     />
-    <button type="submit" :disabled="!newPhotoUrl">Upload Photo</button>
+    <button
+      type="submit"
+      :disabled="!newPhotoUrl"
+      class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity whitespace-nowrap"
+      @click="handleSubmit"
+    >
+      Upload Photo
+    </button>
   </form>
 
-  <hr class="divider" />
+  <hr class="my-6 border-t border-[var(--border)]" />
 
-  <main>
-    <ul v-if="photos.length" class="gallery" aria-label="Photo gallery">
-      <li v-for="(photo, index) in photos" :key="photo.id" class="photo-card photo-fill">
-        <img :src="photo.url" :alt="`Gallery image ${index + 1}`" class="photo-img" />
+  <main class="w-full">
+    <ul
+      v-if="photos.length"
+      class="grid gap-4 p-0 m-0 list-none"
+      style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr))"
+      aria-label="Photo gallery"
+    >
+      <li
+        v-for="(photo, index) in photos"
+        :key="photo.id"
+        class="group relative overflow-hidden rounded border border-[var(--border)]"
+        style="aspect-ratio: 16 / 9"
+      >
+        <img
+          :src="photo.url"
+          :alt="`Gallery image ${index + 1}`"
+          class="w-full h-full object-cover block"
+        />
 
-        <div class="card-actions">
-          <button
-            type="button"
-            class="action-btn fav-btn"
-            :class="{ active: photo.isFavorite }"
+        <div
+          class="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+        >
+          <IconButton
+            :ariaLabel="photo.isFavorite ? 'Remove from favorites' : 'Add to favorites'"
             :aria-pressed="photo.isFavorite"
-            :aria-label="photo.isFavorite ? 'Remove from favorites' : 'Add to favorites'"
+            type="favorite"
             @click.stop="toggleFavorite(photo)"
           >
             {{ photo.isFavorite ? '★' : '☆' }}
-          </button>
+          </IconButton>
 
-          <button
-            type="button"
-            class="action-btn remove-btn"
-            aria-label="Remove photo"
-            @click.stop="removePhoto(index)"
-          >
+          <IconButton ariaLabel="Remove photo" type="remove" @click.stop="removePhoto(index)">
             ✕
-          </button>
+          </IconButton>
         </div>
       </li>
     </ul>
 
-    <p v-else class="description">No photos added yet. Add some!</p>
+    <p v-else class="text-center text-[var(--text-secondary)] py-8">
+      No photos added yet. Add some!
+    </p>
   </main>
 </template>
-
-<style scoped>
-.upload-form {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.url-input {
-  flex: 1;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin-block: 1.5rem;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.photo-card {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-
-  .photo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .card-actions {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .action-btn {
-    width: 2rem;
-    height: 2rem;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    opacity: 0;
-    transition:
-      opacity 0.2s ease,
-      background-color 0.15s ease,
-      border-color 0.15s ease,
-      color 0.15s ease;
-
-    &.fav-btn:hover,
-    &.fav-btn.active {
-      opacity: 1;
-      color: var(--accent);
-    }
-
-    &.remove-btn:hover {
-      color: var(--danger);
-    }
-  }
-
-  &:has(:hover, :focus-within) .action-btn {
-    opacity: 1;
-    background: color-mix(in srgb, canvas 75%, transparent);
-    backdrop-filter: blur(4px);
-    border-color: var(--border-strong);
-  }
-}
-</style>

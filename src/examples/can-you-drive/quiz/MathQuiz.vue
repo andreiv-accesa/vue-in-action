@@ -96,31 +96,39 @@ onUnmounted(stopTimer)
 </script>
 
 <template>
-  <div class="quiz-container">
-    <div v-if="!isFinished">
+  <div class="max-w-sm">
+    <div v-if="!isFinished" class="flex flex-col gap-4">
       <p>Your score: {{ score }}</p>
 
-      <form @submit.prevent="handleSubmit">
-        <p class="question">{{ currentQuestion?.question }}</p>
-        <input v-model.number="userAnswer" type="number" placeholder="Enter answer" autofocus />
-        <button type="submit">Submit</button>
+      <form @submit.prevent="handleSubmit" class="flex flex-col gap-3">
+        <fieldset class="flex flex-col gap-2">
+          <legend class="text-lg font-bold">
+            Question {{ currentQuestionIndex + 1 }} / {{ QUESTIONS.length }}
+          </legend>
+          <p class="text-base font-semibold">{{ currentQuestion?.question }}</p>
+        </fieldset>
+        <input
+          v-model.number="userAnswer"
+          type="number"
+          placeholder="Enter answer"
+          autofocus
+          class="w-full px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)]"
+        />
+        <button
+          type="submit"
+          class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 transition-opacity"
+        >
+          Submit
+        </button>
       </form>
     </div>
 
-    <div v-else class="results">
-      <h2>Quiz Complete!</h2>
-      <p>Final Score: {{ score }} / {{ QUESTIONS.length }}</p>
+    <div
+      v-else
+      class="flex flex-col gap-3 p-4 bg-[var(--surface)] rounded border border-[var(--border)]"
+    >
+      <h2 class="text-xl font-bold">Quiz Complete!</h2>
+      <p class="text-base">Final Score: {{ score }} / {{ QUESTIONS.length }}</p>
     </div>
   </div>
 </template>
-
-<style scoped>
-.quiz-container {
-  max-width: 400px;
-}
-
-.question {
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-</style>

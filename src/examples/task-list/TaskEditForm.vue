@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Task, Priority } from './types'
+import FormRow from '@/components/ui/FormRow.vue'
 
 const props = defineProps<{
   task: Task
@@ -26,37 +27,39 @@ function handleSave() {
 </script>
 
 <template>
-  <li class="task-item editing">
-    <form class="edit-form" @submit.prevent="handleSave">
-      <input v-model.trim="editTaskText" type="text" class="edit-input" required />
-      <select v-model="editTaskPriority">
+  <li
+    class="flex items-center justify-between p-2.5 bg-[var(--surface)] border border-2 border-[var(--accent)] rounded"
+  >
+    <FormRow class="w-full">
+      <input
+        v-model.trim="editTaskText"
+        type="text"
+        class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+        required
+      />
+      <select
+        v-model="editTaskPriority"
+        class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      >
         <option value="low">Low</option>
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-      <button type="submit" :disabled="!editTaskText">Save</button>
-      <button type="button" @click="emit('cancel')">Cancel</button>
-    </form>
+      <button
+        type="submit"
+        :disabled="!editTaskText"
+        class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+        @click="handleSave"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        class="px-4 py-2 bg-[var(--border)] text-[var(--text)] rounded font-medium hover:bg-[var(--border-strong)] transition-colors"
+        @click="emit('cancel')"
+      >
+        Cancel
+      </button>
+    </FormRow>
   </li>
 </template>
-
-<style scoped>
-.task-item {
-  display: flex;
-  align-items: center;
-  padding: 0.6rem 0.8rem;
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-
-  .edit-form {
-    display: flex;
-    gap: 0.5rem;
-    width: 100%;
-
-    .edit-input {
-      flex: 1;
-    }
-  }
-}
-</style>

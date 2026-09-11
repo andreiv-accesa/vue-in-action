@@ -17,7 +17,7 @@ const handleBack = () => {
       :show-back="(route.meta.showBack as boolean) || false"
       @back="handleBack"
     />
-    <main class="mx-auto flex w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
+    <main class="mx-auto flex flex-col w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
       <RouterView />
     </main>
   </div>

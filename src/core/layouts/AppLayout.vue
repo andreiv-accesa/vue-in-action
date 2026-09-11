@@ -11,30 +11,14 @@ const handleBack = () => {
 </script>
 
 <template>
-  <div class="app-layout">
+  <div class="min-h-screen bg-[canvas] text-[canvastext]">
     <AppHeader
       :title="(route.meta.title as string) || 'Vue Examples'"
       :show-back="(route.meta.showBack as boolean) || false"
       @back="handleBack"
     />
-    <main class="app-main">
+    <main class="mx-auto flex w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
       <RouterView />
     </main>
   </div>
 </template>
-
-<style scoped>
-.app-layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.app-main {
-  flex: 1;
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-</style>

@@ -11,7 +11,7 @@ const emit = defineEmits<{ back: [] }>()
 
 <template>
   <header class="border-b border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-sm">
-    <div class="mx-auto flex max-w-6xl items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
+    <div class="mx-auto flex max-w-[42rem] items-center gap-4 px-4 py-4 sm:px-6 lg:px-8">
       <button
         v-if="showBack"
         class="flex h-9 w-9 items-center justify-center rounded-md border-0 bg-transparent p-0 text-[var(--text)] transition-colors hover:bg-[var(--surface-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"

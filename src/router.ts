@@ -7,6 +7,7 @@ import EventRegistration from '@/examples/event-registration/EventRegistration.v
 
 const router = createRouter({
   history: createWebHashHistory('/vue-in-action/'),
+  scrollBehavior: () => ({ top: 0, left: 0 }),
   routes: [
     {
       path: '/',

@@ -30,7 +30,7 @@ function handleReset() {
     <select
       id="filter-priority"
       v-model="priorityFilter"
-      class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      class="form-select border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
     >
       <option value="all">All Priorities</option>
       <option value="low">Low</option>

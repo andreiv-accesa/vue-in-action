@@ -45,7 +45,7 @@ const examples = computed<Example[]>(() => [
       <p class="m-0 text-lg opacity-95">Explore practical Vue 3 patterns and best practices</p>
     </section>
 
-    <section class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <section class="grid gap-6 md:grid-cols-2">
       <div
         v-for="example in examples"
         :key="example.id"

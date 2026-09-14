@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Task } from './types'
 import { getHighlightedSegments } from '@/shared/utils/getHighlightedSegments'
-import { Edit } from '@/components/ui/icons'
+import { Edit, Trash2 } from '@/components/ui/icons'
 import IconButton from '@/components/ui/IconButton.vue'
 
 defineProps<{
@@ -53,7 +53,7 @@ const emit = defineEmits<{
         <Edit :size="18" />
       </IconButton>
       <IconButton ariaLabel="Remove task" type="remove" @click="emit('remove', task.id)">
-        ✕
+        <Trash2 :size="16" />
       </IconButton>
     </div>
   </li>

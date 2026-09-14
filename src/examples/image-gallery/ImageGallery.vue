@@ -76,9 +76,7 @@ function removePhoto(index: number) {
           class="w-full h-full object-cover block"
         />
 
-        <!-- Photo action buttons: favorite (top) and remove (bottom) in vertical layout -->
         <div class="absolute top-2 right-2 flex flex-col gap-1">
-          <!-- Favorite button: always visible if favorited, otherwise show on hover/focus -->
           <div
             class="transition-opacity"
             :class="

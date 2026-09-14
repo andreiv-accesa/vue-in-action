@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { Trash2 } from '@/components/ui/icons'
 import { generateId } from '@/shared/utils/generateId'
 import IconButton from '@/components/ui/IconButton.vue'
 
@@ -75,21 +76,34 @@ function removePhoto(index: number) {
           class="w-full h-full object-cover block"
         />
 
-        <div
-          class="absolute top-2 right-2 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          <IconButton
-            :ariaLabel="photo.isFavorite ? 'Remove from favorites' : 'Add to favorites'"
-            :aria-pressed="photo.isFavorite"
-            type="favorite"
-            @click.stop="toggleFavorite(photo)"
+        <!-- Photo action buttons: favorite (top) and remove (bottom) in vertical layout -->
+        <div class="absolute top-2 right-2 flex flex-col gap-1">
+          <!-- Favorite button: always visible if favorited, otherwise show on hover/focus -->
+          <div
+            class="transition-opacity"
+            :class="
+              photo.isFavorite
+                ? 'opacity-100'
+                : 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'
+            "
           >
-            {{ photo.isFavorite ? '★' : '☆' }}
-          </IconButton>
+            <IconButton
+              :ariaLabel="photo.isFavorite ? 'Remove from favorites' : 'Add to favorites'"
+              :aria-pressed="photo.isFavorite"
+              type="favorite"
+              @click.stop="toggleFavorite(photo)"
+            >
+              {{ photo.isFavorite ? '★' : '☆' }}
+            </IconButton>
+          </div>
 
-          <IconButton ariaLabel="Remove photo" type="remove" @click.stop="removePhoto(index)">
-            ✕
-          </IconButton>
+          <div
+            class="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity"
+          >
+            <IconButton ariaLabel="Remove photo" type="remove" @click.stop="removePhoto(index)">
+              <Trash2 :size="16" />
+            </IconButton>
+          </div>
         </div>
       </li>
     </ul>

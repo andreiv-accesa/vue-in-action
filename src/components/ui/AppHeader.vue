@@ -6,9 +6,7 @@ defineProps<{
   showBack?: boolean
 }>()
 
-const emit = defineEmits<{
-  back: []
-}>()
+const emit = defineEmits<{ back: [] }>()
 </script>
 
 <template>

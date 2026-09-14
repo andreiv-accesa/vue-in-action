@@ -69,7 +69,7 @@ function evaluateAndAdvance() {
 
 function startTimer() {
   stopTimer()
-  timerId = setInterval(evaluateAndAdvance, 4000)
+  timerId = setInterval(evaluateAndAdvance, 4e3)
 }
 
 function stopTimer() {

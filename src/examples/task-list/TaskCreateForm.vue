@@ -31,7 +31,7 @@ function handleSubmit() {
       v-model.trim="newTaskText"
       type="text"
       placeholder="Enter new task..."
-      class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      class="flex-1 px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
       required
       autofocus
     />
@@ -40,7 +40,7 @@ function handleSubmit() {
     <select
       id="new-task-priority"
       v-model="newTaskPriority"
-      class="form-select border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      class="form-select border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
     >
       <option value="low">Low</option>
       <option value="medium">Medium</option>
@@ -50,7 +50,7 @@ function handleSubmit() {
     <button
       type="submit"
       :disabled="!newTaskText"
-      class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+      class="px-4 py-2 bg-(--accent) text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
       @click="handleSubmit"
     >
       Add Task

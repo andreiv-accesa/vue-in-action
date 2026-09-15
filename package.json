@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "api": "json-server db.json --port 3000",
+    "api": "json-server db.json --port 3000 --middlewares ./scripts/mock-delay.js",
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --build",

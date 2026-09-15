@@ -112,11 +112,11 @@ onUnmounted(stopTimer)
           type="number"
           placeholder="Enter answer"
           autofocus
-          class="w-full px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)]"
+          class="w-full px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text)"
         />
         <button
           type="submit"
-          class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 transition-opacity"
+          class="px-4 py-2 bg-(--accent) text-white rounded font-medium hover:opacity-90 transition-opacity"
         >
           Submit
         </button>
@@ -125,7 +125,7 @@ onUnmounted(stopTimer)
 
     <div
       v-else
-      class="flex flex-col gap-3 p-4 bg-[var(--surface)] rounded border border-[var(--border)]"
+      class="flex flex-col gap-3 p-4 bg-(--surface) rounded border border-(--border)"
     >
       <h2 class="text-xl font-bold">Quiz Complete!</h2>
       <p class="text-base">Final Score: {{ score }} / {{ QUESTIONS.length }}</p>

@@ -18,7 +18,7 @@ const emit = defineEmits<{
 
 <template>
   <li
-    class="w-full flex items-center justify-between p-2.5 bg-[var(--surface)] border border-[var(--border)] border-l-4 rounded transition-colors"
+    class="w-full flex items-center justify-between p-2.5 bg-(--surface) border border-(--border) border-l-4 rounded transition-colors"
     :class="{ 'opacity-60': task.isCompleted }"
     :data-priority="task.priority"
   >
@@ -29,18 +29,12 @@ const emit = defineEmits<{
         class="w-4 h-4 cursor-pointer"
         @change="emit('toggle', task)"
       />
-      <span
-        class="text-sm"
-        :class="{ 'line-through text-[var(--text-secondary)]': task.isCompleted }"
-      >
+      <span class="text-sm" :class="{ 'line-through text-(--text-secondary)': task.isCompleted }">
         <template
           v-for="(segment, index) in getHighlightedSegments(task.text, searchQuery)"
           :key="index"
         >
-          <mark
-            v-if="segment.match"
-            class="p-0 m-0 bg-[var(--mark-bg)] text-[var(--mark-color)] rounded-sm"
-          >
+          <mark v-if="segment.match" class="p-0 m-0 bg-(--mark-bg) text-(--mark-color) rounded-sm">
             {{ segment.text }}
           </mark>
           <span v-else>{{ segment.text }}</span>
@@ -48,7 +42,7 @@ const emit = defineEmits<{
       </span>
     </label>
 
-    <div class="flex items-center gap-2 ml-2 flex-shrink-0">
+    <div class="flex items-center gap-2 ml-2 shrink-0">
       <IconButton ariaLabel="Edit task" type="edit" @click="emit('start-edit', task)">
         <Edit :size="18" />
       </IconButton>

@@ -18,7 +18,7 @@ const handleBack = () => {
       @back="handleBack"
     />
     <main class="flex-1 overflow-y-auto">
-      <div class="mx-auto flex flex-col w-full max-w-[42rem] px-4 py-8 sm:px-6 lg:px-8">
+      <div class="mx-auto flex flex-col w-full max-w-2xl px-4 py-8 sm:px-6 lg:px-8">
         <RouterView />
       </div>
     </main>

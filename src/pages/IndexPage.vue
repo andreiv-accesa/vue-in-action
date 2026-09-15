@@ -39,7 +39,7 @@ const examples = computed<Example[]>(() => [
 <template>
   <div class="w-full space-y-8">
     <section
-      class="rounded-xl bg-gradient-to-br from-[var(--accent)] to-[color-mix(in_srgb,var(--accent)_70%,var(--surface))] px-6 py-12 text-center text-white shadow-sm"
+      class="rounded-xl bg-linear-to-br from-(--accent) to-[color-mix(in_srgb,var(--accent)_70%,var(--surface))] px-6 py-12 text-center text-white shadow-sm"
     >
       <h1 class="mb-2 text-4xl font-bold tracking-tight">Vue 3 Learning Examples</h1>
       <p class="m-0 text-lg opacity-95">Explore practical Vue 3 patterns and best practices</p>
@@ -49,10 +49,10 @@ const examples = computed<Example[]>(() => [
       <div
         v-for="example in examples"
         :key="example.id"
-        class="overflow-hidden rounded-xl border border-[var(--border)] bg-[var(--surface)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--accent)] hover:shadow-lg"
+        class="overflow-hidden rounded-xl border border-(--border) bg-(--surface) transition-all duration-300 hover:-translate-y-0.5 hover:border-(--accent) hover:shadow-lg"
       >
         <router-link :to="example.path" class="block p-6 text-inherit no-underline">
-          <h2 class="mb-2 text-xl font-semibold text-[var(--text)]">{{ example.title }}</h2>
+          <h2 class="mb-2 text-xl font-semibold text-(--text)">{{ example.title }}</h2>
           <p class="m-0 text-[0.95rem] text-[color-mix(in_srgb,var(--text)_70%,transparent)]">
             {{ example.description }}
           </p>

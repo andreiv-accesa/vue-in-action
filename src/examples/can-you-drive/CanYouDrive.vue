@@ -17,14 +17,14 @@ const canDrive = computed(() => (age.value > 18 ? 'Yes' : 'No'))
 <template>
   <p>{{ message }}</p>
 
-  <fieldset class="border border-[var(--border)] rounded p-4 flex flex-col gap-2">
+  <fieldset class="border border-(--border) rounded p-4 flex flex-col gap-2">
     <legend class="text-base font-semibold">Age Verification</legend>
     <label for="age-input">Enter your age:</label>
     <input
       id="age-input"
       v-model.number="age"
       type="number"
-      class="w-full px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)]"
+      class="w-full px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text)"
     />
   </fieldset>
 
@@ -33,7 +33,7 @@ const canDrive = computed(() => (age.value > 18 ? 'Yes' : 'No'))
     <span :class="{ success: canDrive === 'Yes', danger: canDrive === 'No' }">{{ canDrive }}</span>
   </p>
 
-  <hr class="my-4 border-t border-[var(--border)]" />
+  <hr class="my-4 border-t border-(--border)" />
   <MathQuiz />
 </template>
 

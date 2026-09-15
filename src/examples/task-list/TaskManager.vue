@@ -87,7 +87,7 @@ function handleClearFilters() {
         v-model.trim="newTaskText"
         type="text"
         placeholder="Enter new task..."
-        class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+        class="flex-1 px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
         required
         autofocus
       />
@@ -95,7 +95,7 @@ function handleClearFilters() {
       <select
         id="new-task-priority"
         v-model="newTaskPriority"
-        class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+        class="px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
       >
         <option value="low">Low</option>
         <option value="medium">Medium</option>
@@ -105,7 +105,7 @@ function handleClearFilters() {
       <button
         type="submit"
         :disabled="!newTaskText"
-        class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity whitespace-nowrap"
+        class="px-4 py-2 bg-(--accent) text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity whitespace-nowrap"
         @click="handleAddTask"
       >
         Add Task
@@ -118,13 +118,13 @@ function handleClearFilters() {
         v-model.trim="searchQuery"
         type="search"
         placeholder="Search by name..."
-        class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+        class="flex-1 px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
       />
 
       <select
         id="filter-priority"
         v-model="selectedPriorityFilter"
-        class="px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+        class="px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
       >
         <option value="all">All Priorities</option>
         <option value="low">Low</option>
@@ -135,14 +135,14 @@ function handleClearFilters() {
       <button
         type="reset"
         :disabled="!hasActiveFilters"
-        class="px-4 py-2 bg-[var(--border)] text-[var(--text)] rounded font-medium hover:bg-[var(--border-strong)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
+        class="px-4 py-2 bg-(--border) text-(--text) rounded font-medium hover:bg-(--border-strong) disabled:opacity-50 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
         @click="handleClearFilters"
       >
         Clear
       </button>
     </form>
 
-    <hr class="border-t border-[var(--border)] my-2" />
+    <hr class="border-t border-(--border) my-2" />
 
     <main class="w-full">
       <TransitionGroup
@@ -170,7 +170,7 @@ function handleClearFilters() {
         </li>
       </TransitionGroup>
 
-      <p v-else class="text-center text-[var(--text-secondary)] py-8">No tasks found.</p>
+      <p v-else class="text-center text-(--text-secondary) py-8">No tasks found.</p>
     </main>
   </div>
 </template>

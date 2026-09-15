@@ -42,20 +42,20 @@ function removePhoto(index: number) {
       v-model.trim="newPhotoUrl"
       type="url"
       placeholder="Enter image URL"
-      class="flex-1 px-3 py-2 border border-[var(--border)] rounded bg-[var(--surface)] text-[var(--text)] focus-visible:outline-2 focus-visible:outline-[var(--accent)]"
+      class="flex-1 px-3 py-2 border border-(--border) rounded bg-(--surface) text-(--text) focus-visible:outline-2 focus-visible:outline-(--accent)"
       required
     />
     <button
       type="submit"
       :disabled="!newPhotoUrl"
-      class="px-4 py-2 bg-[var(--accent)] text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity whitespace-nowrap"
+      class="px-4 py-2 bg-(--accent) text-white rounded font-medium hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity whitespace-nowrap"
       @click="handleSubmit"
     >
       Upload Photo
     </button>
   </form>
 
-  <hr class="my-6 border-t border-[var(--border)]" />
+  <hr class="my-6 border-t border-(--border)" />
 
   <main class="w-full">
     <ul
@@ -67,7 +67,7 @@ function removePhoto(index: number) {
       <li
         v-for="(photo, index) in photos"
         :key="photo.id"
-        class="group relative overflow-hidden rounded border border-[var(--border)]"
+        class="group relative overflow-hidden rounded border border-(--border)"
         style="aspect-ratio: 16 / 9"
       >
         <img
@@ -106,7 +106,7 @@ function removePhoto(index: number) {
       </li>
     </ul>
 
-    <p v-else class="text-center text-[var(--text-secondary)] py-8">
+    <p v-else class="text-center text-(--text-secondary) py-8">
       No photos added yet. Add some!
     </p>
   </main>
